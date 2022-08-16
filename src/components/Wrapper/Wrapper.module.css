@@ -5,6 +5,28 @@
   column-gap: 0.3rem;
   row-gap: 0.3rem;
   max-width: 33rem;
-  border: 1px solid red;
   padding: 1rem;
+  position: absolute;
+  top: 0;
+  left: 33rem;
+  /* visibility: hidden; */
+}
+.x-side,
+.o-side {
+  height: 100%;
+  width: 50%;
+  font-size: 3rem;
+  padding: 5rem;
+  display: flex;
+  align-items: center;
+  transition: all 1s;
+}
+.x-side {
+  background-color: #6495ed;
+  justify-content: flex-start;
+}
+
+.o-side {
+  background-color: #e0eafb;
+  justify-content: flex-end;
 }

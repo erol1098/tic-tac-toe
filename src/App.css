@@ -5,7 +5,17 @@
 }
 .app {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 5rem;
+  padding: 2rem 0;
+}
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+  position: relative;
+  width: 100%;
+  height: 80vh;
 }
