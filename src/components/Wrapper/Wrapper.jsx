@@ -12,7 +12,8 @@ const customStyles = {
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
     fontSize: "3rem",
-    backgroundColor: "yellowgreen",
+    // backgroundColor: "#32ff7e",
+    backgroundColor: "#17c0eb",
     width: "100%",
     textAlign: "center",
     height: "7rem",
@@ -21,7 +22,6 @@ const customStyles = {
 const Wrapper = () => {
   const checkWin = () => {
     if (arr.every((element) => element !== "")) {
-      console.log("first");
       setTie(true);
     }
     for (let i = 1; i <= 9; i++) {
@@ -48,10 +48,14 @@ const Wrapper = () => {
       }
     }
   };
+
   const [win, setWin] = useState(false);
   const [side, setSide] = useState(true);
   const [tie, setTie] = useState(false);
   const [arr, setArr] = useState(["", "", "", "", "", "", "", "", ""]);
+
+  const [xScore, setXScore] = useState(0);
+  const [oScore, setOScore] = useState(0);
 
   useEffect(() => {
     checkWin();
@@ -61,12 +65,27 @@ const Wrapper = () => {
   //? Modal
   Modal.setAppElement("#root");
   const handleClose = () => {
+    if (win) {
+      !side
+        ? setXScore((prevScore) => prevScore + 1)
+        : setOScore((prevScore) => prevScore + 1);
+    } else {
+      setOScore(0);
+      setXScore(0);
+    }
     setWin(false);
     setTie(false);
     setSide(true);
     setArr(["", "", "", "", "", "", "", "", ""]);
   };
-  console.log(tie);
+
+  const handleReset = () => {
+    setWin(false);
+    setTie(false);
+    setSide(true);
+    setArr(["", "", "", "", "", "", "", "", ""]);
+  };
+
   return (
     <>
       <Modal
@@ -77,20 +96,24 @@ const Wrapper = () => {
         <p>{!tie && (!side ? "'X' Side Won" : "'O' Side Won")}</p>
         <p>{tie && "It's a Tie!"}</p>
       </Modal>
-
-      {tie && (
-        <Modal isOpen={win} style={customStyles} onRequestClose={handleClose}>
-          <p>It's a Tie!</p>
-        </Modal>
-      )}
-      {/* {tie && <p> It's a Tie!</p>} */}
+      <div className={classes["btn-wrapper"]}>
+        <button className={classes["btn-new"]} onClick={handleClose}>
+          New Game
+        </button>
+        <button className={classes["btn-reset"]} onClick={handleReset}>
+          Reset
+        </button>
+      </div>
       <div
         className={classes["x-side"]}
         style={
-          side ? { backgroundColor: "#5077be" } : { backgroundColor: "#e0eafb" }
+          side
+            ? { backgroundColor: "#5077be", color: "#fff" }
+            : { backgroundColor: "#e0eafb", color: "#3d3d3d" }
         }
       >
-        'X' Side
+        <p>'X' Side</p>
+        <p>{xScore}</p>
       </div>
       <section className={classes.wrapper}>
         {indexes.map((index) => (
@@ -108,11 +131,12 @@ const Wrapper = () => {
         className={classes["o-side"]}
         style={
           !side
-            ? { backgroundColor: "#5077be" }
-            : { backgroundColor: "#e0eafb" }
+            ? { backgroundColor: "#5077be", color: "#fff" }
+            : { backgroundColor: "#e0eafb", color: "#3d3d3d" }
         }
       >
         <p>'O' Side</p>
+        <p>{oScore}</p>
       </div>
     </>
   );

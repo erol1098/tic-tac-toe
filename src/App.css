@@ -3,6 +3,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "DynaPuff", cursive;
+  user-select: none;
 }
 .app {
   display: flex;
@@ -11,7 +12,7 @@
   justify-content: center;
   padding: 2rem 0;
   height: 100vh;
-  background-color: #141e2f;
+  background-color: #4b4b4b;
   color: #fff;
 }
 .container {
