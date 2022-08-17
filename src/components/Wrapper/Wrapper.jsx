@@ -5,19 +5,26 @@ import Modal from "react-modal";
 const indexes = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 const customStyles = {
   content: {
-    top: "50%",
+    top: "3rem",
     left: "50%",
     right: "auto",
     bottom: "auto",
     marginRight: "-50%",
-    padding: "5rem",
-    // backgroundColor: "rgba(0,0,0,0.6)",
+    // padding: "1rem 5rem",
     transform: "translate(-50%, -50%)",
     fontSize: "3rem",
+    backgroundColor: "yellowgreen",
+    width: "100%",
+    textAlign: "center",
+    height: "7rem",
   },
 };
 const Wrapper = () => {
   const checkWin = () => {
+    if (arr.every((element) => element !== "")) {
+      console.log("first");
+      setTie(true);
+    }
     for (let i = 1; i <= 9; i++) {
       if (arr[i - 1] !== "") {
         //? Horizontal
@@ -44,6 +51,7 @@ const Wrapper = () => {
   };
   const [win, setWin] = useState(false);
   const [side, setSide] = useState(true);
+  const [tie, setTie] = useState(false);
   const [arr, setArr] = useState(["", "", "", "", "", "", "", "", ""]);
 
   useEffect(() => {
@@ -58,11 +66,19 @@ const Wrapper = () => {
     setSide(true);
     setArr(["", "", "", "", "", "", "", "", ""]);
   };
+  console.log(tie);
   return (
     <>
-      <Modal isOpen={win} style={customStyles} onRequestClose={handleClose}>
-        <p>{!side ? "'X' Side Won" : "'O' Side Won"}</p>
-      </Modal>
+      {win && (
+        <Modal isOpen={win} style={customStyles} onRequestClose={handleClose}>
+          <p>{!side ? "'X' Side Won" : "'O' Side Won"}</p>
+        </Modal>
+      )}
+      {/* {tie && (
+        <Modal isOpen={win} style={customStyles} onRequestClose={handleClose}>
+          <p>It's a Tie!</p>
+        </Modal>
+      )} */}
       <div
         className={classes["x-side"]}
         style={

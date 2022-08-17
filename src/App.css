@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "DynaPuff", cursive;
 }
 .app {
   display: flex;
@@ -9,6 +10,9 @@
   align-items: center;
   justify-content: center;
   padding: 2rem 0;
+  height: 100vh;
+  background-color: #141e2f;
+  color: #fff;
 }
 .container {
   display: flex;
@@ -17,5 +21,9 @@
   margin-top: 2rem;
   position: relative;
   width: 100%;
-  height: 80vh;
+  height: calc(100vh - 8rem);
+}
+
+h1 {
+  height: 3rem;
 }
