@@ -5,12 +5,11 @@ import Modal from "react-modal";
 const indexes = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 const customStyles = {
   content: {
-    top: "3rem",
+    top: "5rem",
     left: "50%",
     right: "auto",
     bottom: "auto",
     marginRight: "-50%",
-    // padding: "1rem 5rem",
     transform: "translate(-50%, -50%)",
     fontSize: "3rem",
     backgroundColor: "yellowgreen",
@@ -63,22 +62,28 @@ const Wrapper = () => {
   Modal.setAppElement("#root");
   const handleClose = () => {
     setWin(false);
+    setTie(false);
     setSide(true);
     setArr(["", "", "", "", "", "", "", "", ""]);
   };
   console.log(tie);
   return (
     <>
-      {win && (
-        <Modal isOpen={win} style={customStyles} onRequestClose={handleClose}>
-          <p>{!side ? "'X' Side Won" : "'O' Side Won"}</p>
-        </Modal>
-      )}
-      {/* {tie && (
+      <Modal
+        isOpen={win || tie}
+        style={customStyles}
+        onRequestClose={handleClose}
+      >
+        <p>{!tie && (!side ? "'X' Side Won" : "'O' Side Won")}</p>
+        <p>{tie && "It's a Tie!"}</p>
+      </Modal>
+
+      {tie && (
         <Modal isOpen={win} style={customStyles} onRequestClose={handleClose}>
           <p>It's a Tie!</p>
         </Modal>
-      )} */}
+      )}
+      {/* {tie && <p> It's a Tie!</p>} */}
       <div
         className={classes["x-side"]}
         style={
