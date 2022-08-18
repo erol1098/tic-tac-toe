@@ -90,8 +90,8 @@ const Wrapper = () => {
         style={customStyles}
         onRequestClose={handleClose}
       >
-        <p>{!tie && (!side ? "'X' Side Won" : "'O' Side Won")}</p>
-        <p>{tie && "It's a Tie!"}</p>
+        <p>{win && (!side ? "'X' Side Won" : "'O' Side Won")}</p>
+        <p>{tie && !win && "It's a Tie!"}</p>
       </Modal>
       <div className={classes["btn-wrapper"]}>
         <button
