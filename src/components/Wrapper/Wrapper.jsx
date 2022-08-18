@@ -20,10 +20,7 @@ const customStyles = {
   },
 };
 const Wrapper = () => {
-  const checkWin = () => {
-    if (arr.every((element) => element !== "")) {
-      setTie(true);
-    }
+  const checkWin = (arr) => {
     for (let i = 1; i <= 9; i++) {
       if (arr[i - 1] !== "") {
         //? Horizontal
@@ -58,7 +55,10 @@ const Wrapper = () => {
   const [oScore, setOScore] = useState(0);
 
   useEffect(() => {
-    checkWin();
+    checkWin(arr);
+    if (arr.every((element) => element !== "")) {
+      setTie(true);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [arr]);
 
@@ -69,9 +69,6 @@ const Wrapper = () => {
       !side
         ? setXScore((prevScore) => prevScore + 1)
         : setOScore((prevScore) => prevScore + 1);
-    } else {
-      setOScore(0);
-      setXScore(0);
     }
     setWin(false);
     setTie(false);
@@ -97,7 +94,14 @@ const Wrapper = () => {
         <p>{tie && "It's a Tie!"}</p>
       </Modal>
       <div className={classes["btn-wrapper"]}>
-        <button className={classes["btn-new"]} onClick={handleClose}>
+        <button
+          className={classes["btn-new"]}
+          onClick={() => {
+            handleClose();
+            setOScore(0);
+            setXScore(0);
+          }}
+        >
           New Game
         </button>
         <button className={classes["btn-reset"]} onClick={handleReset}>
