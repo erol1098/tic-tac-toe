@@ -2,7 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "DynaPuff", cursive;
+  font-family: 'DynaPuff', cursive;
   user-select: none;
 }
 .app {
@@ -12,6 +12,7 @@
   justify-content: center;
   padding: 2rem 0;
   height: 100vh;
+  min-height: 42rem;
   background-color: #4b4b4b;
   color: #fff;
 }
@@ -22,6 +23,7 @@
   margin-top: 2rem;
   position: relative;
   width: 100%;
+  min-height: 37rem;
   height: calc(100vh - 8rem);
 }
 
